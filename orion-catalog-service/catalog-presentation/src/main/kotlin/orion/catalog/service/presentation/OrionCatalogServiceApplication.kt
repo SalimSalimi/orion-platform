@@ -1,4 +1,4 @@
-package com.salimi.orion.orion_catalog_service
+package orion.catalog.service.presentation
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class OrionCatalogServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<OrionCatalogServiceApplication>(*args)
+    runApplication<OrionCatalogServiceApplication>(*args)
 }

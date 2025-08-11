@@ -11,7 +11,8 @@
 	<groupId>com.salimi.orion</groupId>
 	<artifactId>orion-catalog-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>orion-catalog-service</name>
+    <packaging>pom</packaging>
+    <name>orion-catalog-service</name>
 	<description>Catalog service for orion platform</description>
 	<url/>
 	<licenses>
@@ -20,7 +21,12 @@
 	<developers>
 		<developer/>
 	</developers>
-	<scm>
+    <modules>
+        <module>catalog-application</module>
+		<module>catalog-infrastructure</module>
+		<module>catalog-presentation</module>
+	</modules>
+    <scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
