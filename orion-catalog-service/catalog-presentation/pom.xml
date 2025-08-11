@@ -10,6 +10,14 @@
     <artifactId>catalog-presentation</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.salimi.orion</groupId>
+            <artifactId>catalog-application</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>catalog-service</finalName>
         <plugins>
