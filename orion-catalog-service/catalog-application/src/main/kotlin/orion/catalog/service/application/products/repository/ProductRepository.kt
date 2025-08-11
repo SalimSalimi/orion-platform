@@ -6,4 +6,6 @@ import java.util.UUID
 interface ProductRepository {
 
     fun create(product: Product): UUID
+
+    fun getById(id: UUID): Product?
 }

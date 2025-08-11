@@ -1,6 +1,7 @@
 package orion.catalog.service.infrastructure.product.db
 
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.assertNotNull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
@@ -11,6 +12,7 @@ import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.domain.product.Product
+import orion.catalog.service.infrastructure.product.db.entities.ProductEntity
 import orion.catalog.service.infrastructure.product.db.jpa.ProductJpaRepository
 import java.util.UUID
 import kotlin.test.Test
@@ -75,6 +77,29 @@ class ProductRepositoryImplTest {
                 assertEquals(product.description, description)
             }
 
+        }
+    }
+
+    @Test
+    fun `should retrieve per id a product `() {
+        val productEntity = ProductEntity(
+            id = UUID.randomUUID(),
+            name = "a Product",
+            description = "Description",
+            price = 150.00,
+            stock = 5
+        )
+
+        productJpaRepository.save(productEntity)
+
+        val productFound = productRepository.getById(productEntity.id)
+
+        assertNotNull(productFound)
+        with(productFound) {
+            assertEquals(productEntity.price, price)
+            assertEquals(productEntity.name, name)
+            assertEquals(productEntity.stock, availableStock)
+            assertEquals(productEntity.description, description)
         }
     }
 }

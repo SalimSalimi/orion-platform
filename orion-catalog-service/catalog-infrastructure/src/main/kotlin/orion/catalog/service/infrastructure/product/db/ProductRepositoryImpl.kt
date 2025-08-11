@@ -26,4 +26,22 @@ class ProductRepositoryImpl(
         return savedEntity.id
     }
 
+    override fun getById(id: UUID): Product? {
+        val productEntity = jpaRepository.findById(id)
+        if (productEntity.isPresent) {
+            with(productEntity.get()) {
+                return Product(
+                    id,
+                    name,
+                    description,
+                    price,
+                    availableStock = stock,
+                    categoryId = emptySet()
+                )
+            }
+        } else {
+            return null
+        }
+    }
+
 }
