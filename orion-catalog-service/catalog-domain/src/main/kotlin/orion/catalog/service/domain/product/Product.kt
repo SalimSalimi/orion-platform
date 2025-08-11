@@ -7,7 +7,8 @@ class Product(
     var name: String,
     var description: String?,
     var price: Double,
-    var availableStock: Int
+    var availableStock: Int,
+    val categoryId: Set<UUID>
 ) {
     init {
         require(name.isNotBlank()) { "Product name must not be blank" }

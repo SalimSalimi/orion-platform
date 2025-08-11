@@ -9,4 +9,12 @@
     </parent>
     <artifactId>catalog-application</artifactId>
     <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.salimi.orion</groupId>
+            <artifactId>catalog-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
