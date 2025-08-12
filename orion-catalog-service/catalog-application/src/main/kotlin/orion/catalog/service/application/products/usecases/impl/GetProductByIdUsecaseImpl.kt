@@ -1,6 +1,7 @@
 package orion.catalog.service.application.products.usecases.impl
 
 import orion.catalog.service.application.products.dto.ProductDto
+import orion.catalog.service.application.products.mapper.ProductMapper
 import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.application.products.usecases.GetProductByIdUsecase
 import orion.catalog.service.application.utils.Usecase
@@ -8,7 +9,8 @@ import java.util.UUID
 
 @Usecase
 class GetProductByIdUsecaseImpl(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val mapper: ProductMapper,
 ): GetProductByIdUsecase{
 
     override fun execute(input: String): ProductDto? {
@@ -21,15 +23,7 @@ class GetProductByIdUsecaseImpl(
             if (product == null) {
                 return null
             } else {
-                with(product) {
-                    return ProductDto(
-                        uuidId.toString(),
-                        name,
-                        description,
-                        price,
-                        availableStock
-                    )
-                }
+                return mapper.toDto(product)
             }
         }
     }
