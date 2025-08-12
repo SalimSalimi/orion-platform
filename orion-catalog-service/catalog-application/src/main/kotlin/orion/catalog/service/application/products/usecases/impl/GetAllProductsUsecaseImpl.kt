@@ -4,7 +4,9 @@ import orion.catalog.service.application.products.dto.ProductDto
 import orion.catalog.service.application.products.mapper.ProductMapper
 import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.application.products.usecases.GetAllProductsUsecase
+import orion.catalog.service.application.utils.Usecase
 
+@Usecase
 class GetAllProductsUsecaseImpl(
     private val productRepository: ProductRepository,
     private val productMapper: ProductMapper
