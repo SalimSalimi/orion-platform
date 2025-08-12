@@ -1,6 +1,7 @@
 package orion.catalog.service.presentation.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.hamcrest.collection.IsCollectionWithSize.hasSize
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.times
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import orion.catalog.service.application.products.dto.CreateProductDto
 import orion.catalog.service.application.products.dto.ProductDto
 import orion.catalog.service.application.products.usecases.CreateProductUsecase
+import orion.catalog.service.application.products.usecases.GetAllProductsUsecase
 import orion.catalog.service.application.products.usecases.GetProductByIdUsecase
 import java.util.UUID
 
@@ -31,6 +33,9 @@ class ProductControllerIntegrationTest(@Autowired val mockMvc: MockMvc) {
 
     @MockitoBean
     lateinit var createProductUsecase: CreateProductUsecase
+
+    @MockitoBean
+    lateinit var getAllProductUsecase: GetAllProductsUsecase
 
     @Autowired
     lateinit var objectMapper: ObjectMapper
@@ -50,6 +55,24 @@ class ProductControllerIntegrationTest(@Autowired val mockMvc: MockMvc) {
             .andExpect(jsonPath("$.name").value("Mock Product"))
 
         verify(getProductByIdUsecase, times(1)).execute(any())
+    }
+
+    @Test
+    @WithMockUser
+    fun `GET all should return all products `() {
+        val id = UUID.randomUUID()
+        val stringId = id.toString()
+        val product = ProductDto(stringId, "Mock Product", "desc", 10.00, 5)
+
+        whenever(getAllProductUsecase.execute(Unit)).thenReturn(setOf(product))
+
+        mockMvc.perform(get("/products"))
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$", hasSize<Int>(1)))
+            .andExpect(jsonPath("$[0].id").value(stringId))
+            .andExpect(jsonPath("$[0].name").value("Mock Product"))
+
+        verify(getAllProductUsecase, times(1)).execute(Unit)
     }
 
     @Test

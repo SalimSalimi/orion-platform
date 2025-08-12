@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 import orion.catalog.service.application.products.dto.CreateProductDto
 import orion.catalog.service.application.products.dto.ProductDto
 import orion.catalog.service.application.products.usecases.CreateProductUsecase
+import orion.catalog.service.application.products.usecases.GetAllProductsUsecase
 import orion.catalog.service.application.products.usecases.GetProductByIdUsecase
 
 @RestController
@@ -18,6 +19,7 @@ import orion.catalog.service.application.products.usecases.GetProductByIdUsecase
 class ProductController(
     private val createProductUsecase: CreateProductUsecase,
     private val getProductByIdUsecase: GetProductByIdUsecase,
+    private val getAllProductsUsecase: GetAllProductsUsecase,
 ) {
 
     @PostMapping
@@ -32,6 +34,12 @@ class ProductController(
         val productDto = getProductByIdUsecase.execute(id) ?: return ResponseEntity.notFound().build()
 
         return ResponseEntity.ok(productDto)
+    }
+
+    @GetMapping
+    fun getAllProducts(): ResponseEntity<Set<ProductDto>> {
+        val allProducts = getAllProductsUsecase.execute(Unit)
+        return ResponseEntity.ok(allProducts)
     }
 }
 
