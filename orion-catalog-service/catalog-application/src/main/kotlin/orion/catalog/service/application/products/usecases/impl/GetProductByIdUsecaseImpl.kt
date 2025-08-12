@@ -3,8 +3,10 @@ package orion.catalog.service.application.products.usecases.impl
 import orion.catalog.service.application.products.dto.ProductDto
 import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.application.products.usecases.GetProductByIdUsecase
+import orion.catalog.service.application.utils.Usecase
 import java.util.UUID
 
+@Usecase
 class GetProductByIdUsecaseImpl(
     private val productRepository: ProductRepository
 ): GetProductByIdUsecase{
