@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /api/catalog
+
 app:
   oauth2:
     base-path: http://localhost:8085/realms/catalog-realm/protocol/openid-connect
