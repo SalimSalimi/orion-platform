@@ -8,4 +8,6 @@ interface ProductRepository {
     fun create(product: Product): UUID
 
     fun getById(id: UUID): Product?
+
+    fun getAll(): Set<Product>
 }

@@ -14,13 +14,14 @@ import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.domain.product.Product
 import orion.catalog.service.infrastructure.product.db.entities.ProductEntity
 import orion.catalog.service.infrastructure.product.db.jpa.ProductJpaRepository
+import orion.catalog.service.infrastructure.product.db.mapper.ProductEntityMapper
 import java.util.UUID
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @Testcontainers
 @DataJpaTest
-@Import(ProductRepositoryImpl::class)
+@Import(ProductRepositoryImpl::class, ProductEntityMapper::class)
 class ProductRepositoryImplTest {
     companion object {
         // Init PostgresDB container + properties
@@ -101,5 +102,31 @@ class ProductRepositoryImplTest {
             assertEquals(productEntity.stock, availableStock)
             assertEquals(productEntity.description, description)
         }
+    }
+
+    @Test
+    fun `should retrieve all products `() {
+        val productEntity = ProductEntity(
+            id = UUID.randomUUID(),
+            name = "a Product",
+            description = "Description",
+            price = 150.00,
+            stock = 5
+        )
+
+        val productEntity2 = ProductEntity(
+            id = UUID.randomUUID(),
+            name = "a Product 2",
+            description = "Description 2",
+            price = 250.00,
+            stock = 10
+        )
+
+        productJpaRepository.saveAll(listOf(productEntity, productEntity2))
+
+        val listeProducts = productRepository.getAll()
+
+        assertNotNull(listeProducts)
+        assertEquals(2, listeProducts.size)
     }
 }
