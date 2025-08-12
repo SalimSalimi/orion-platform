@@ -1,0 +1,40 @@
+meta {
+  name: Create product
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/catalog/products
+  body: json
+  auth: oauth2
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: http://localhost:8085/realms/catalog-realm/protocol/openid-connect/token
+  refresh_token_url: 
+  client_id: catalog-service
+  client_secret: 19dMwfWKyWfvMHdRinra22dl6CxviZ8M
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: credentials
+  token_placement: header
+  token_header_prefix: Bearer
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+body:json {
+  {
+    "name": "First product",
+    "description": "this is my first product created through Bruno with OAuth2",
+    "price": 150.00,
+    "stock": 5,
+    "categoriIds": []
+  }
+}
+
+settings {
+  encodeUrl: true
+}
