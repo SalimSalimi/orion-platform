@@ -34,11 +34,12 @@ class CreateProductUsecaseImplementationTest {
             listOf(categoryId)
         )
 
-        whenever(categoryRepository.existsById(categoryId)).thenReturn(true)
+        //whenever(categoryRepository.existsById(categoryId)).thenReturn(true)
         whenever(productRepository.create(any())).thenReturn(productIdCreated)
 
-        createProductUsecase.execute(productDto)
+        val productId = createProductUsecase.execute(productDto)
 
+        assertEquals(productIdCreated, productId)
         verify(productRepository).create(productCaptor.capture())
         val savedProduct = productCaptor.firstValue
 

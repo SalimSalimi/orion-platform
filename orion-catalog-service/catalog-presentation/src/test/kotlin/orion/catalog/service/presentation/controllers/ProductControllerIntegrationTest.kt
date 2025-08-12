@@ -23,7 +23,6 @@ import orion.catalog.service.application.products.usecases.CreateProductUsecase
 import orion.catalog.service.application.products.usecases.GetProductByIdUsecase
 import java.util.UUID
 
-
 @WebMvcTest(ProductController::class)
 class ProductControllerIntegrationTest(@Autowired val mockMvc: MockMvc) {
 
@@ -55,10 +54,13 @@ class ProductControllerIntegrationTest(@Autowired val mockMvc: MockMvc) {
 
     @Test
     @WithMockUser
-    fun `POST {id} should create product and return 201 `() {
+    fun `POST {id} should create product and return 200 with id created `() {
         val productToCreateDto = CreateProductDto("A product", "description", 10.00, 5, emptyList())
 
         val productToCreateJson = objectMapper.writeValueAsBytes(productToCreateDto)
+        val uuidCreated = UUID.randomUUID()
+
+        whenever(createProductUsecase.execute(productToCreateDto)).thenReturn(uuidCreated)
 
         mockMvc.perform(
             post("/products")
@@ -67,7 +69,8 @@ class ProductControllerIntegrationTest(@Autowired val mockMvc: MockMvc) {
                 .with(csrf())
 
         )
-            .andExpect(status().isCreated)
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.id").value(uuidCreated.toString()))
 
         verify(createProductUsecase, times(1)).execute(any())
     }

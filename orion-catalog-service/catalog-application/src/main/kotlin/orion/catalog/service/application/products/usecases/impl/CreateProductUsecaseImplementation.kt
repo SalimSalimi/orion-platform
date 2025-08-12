@@ -9,10 +9,10 @@ import java.util.UUID
 
 @Usecase
 class CreateProductUsecaseImplementation(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
 ) : CreateProductUsecase {
 
-    override fun execute(input: CreateProductDto) {
+    override fun execute(input: CreateProductDto): UUID {
         val product = Product(
             uuid = UUID.randomUUID(),
             name = input.name,
@@ -22,7 +22,7 @@ class CreateProductUsecaseImplementation(
             categoryId = input.categoryIds.toMutableSet(),
         )
         // Save product
-        productRepository.create(product)
+        return productRepository.create(product)
     }
 
 }

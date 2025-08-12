@@ -1,5 +1,6 @@
 package orion.catalog.service.presentation.controllers
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -20,9 +21,10 @@ class ProductController(
 ) {
 
     @PostMapping
-    fun createProduct(@RequestBody productDto: CreateProductDto): ResponseEntity<Unit> {
-        this.createProductUsecase.execute(productDto)
-        return ResponseEntity.status(201).build()
+    fun createProduct(@RequestBody productDto: CreateProductDto): ResponseEntity<CreatedProductDtoSucces> {
+        val createdProductId = this.createProductUsecase.execute(productDto)
+        val response = CreatedProductDtoSucces(createdProductId.toString())
+        return ResponseEntity.ok(response)
     }
 
     @GetMapping("/{id}")
@@ -32,3 +34,9 @@ class ProductController(
         return ResponseEntity.ok(productDto)
     }
 }
+
+
+data class CreatedProductDtoSucces(
+    @JsonProperty
+    val id: String
+)
