@@ -6,5 +6,8 @@ import org.springframework.context.annotation.FilterType
 import orion.catalog.service.application.utils.Usecase
 
 @Configuration
-@ComponentScan(basePackages = ["orion.catalog.service"], includeFilters = [ComponentScan.Filter(type = FilterType.ANNOTATION, classes = [Usecase::class])])
+@ComponentScan(
+    basePackages = ["orion.catalog.service"],
+    includeFilters = [ComponentScan.Filter(type = FilterType.ANNOTATION, value = [Usecase::class])]
+)
 class UsecasesConfig
