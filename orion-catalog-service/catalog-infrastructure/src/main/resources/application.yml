@@ -4,7 +4,8 @@ server:
 
 app:
   oauth2:
-    base-path: http://localhost:8085/realms/catalog-realm/protocol/openid-connect
+    base-path: http://localhost:8085/realms/catalog-realm
+    protocol-openid: /protocol/openid-connect
 
 spring:
   datasource:
@@ -20,12 +21,15 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   security:
     oauth2:
-      client:
-        registration:
-          keycloak:
-            client-id: catalog-service
-            client-secret: 19dMwfWKyWfvMHdRinra22dl6CxviZ8M
-            authorization-grant-type: client_credentials
-        provider:
-          keycloak:
-            token-uri: ${app.oauth2.base-path}/token
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: catalog-service
+#            client-secret: 19dMwfWKyWfvMHdRinra22dl6CxviZ8M
+#            authorization-grant-type: client_credentials
+#        provider:
+#          keycloak:
+#            token-uri: ${app.oauth2.base-path}/token
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.oauth2.base-path}
