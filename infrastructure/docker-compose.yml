@@ -24,5 +24,12 @@ services:
     ports:
       - "8085:8080"
 
+  redis:
+    image: redis:8.2.0
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
 volumes:
   postgres_data:
