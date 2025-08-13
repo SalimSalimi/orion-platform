@@ -1,0 +1,6 @@
+package orion.catalog.catalog_bff.application.user
+
+import orion.catalog.catalog_bff.application.shared.BaseUsecaseWithoutParameterInterface
+import orion.catalog.catalog_bff.domain.User
+
+interface GetUserInfoUsecase: BaseUsecaseWithoutParameterInterface<User>
