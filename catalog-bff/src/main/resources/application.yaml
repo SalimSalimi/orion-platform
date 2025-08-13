@@ -7,6 +7,10 @@ app:
   oidc:
     base-url: http://localhost:8085/realms/catalog-realm
 
+api:
+  catalog:
+    base-url: http://localhost:8080/api/catalog
+
 spring:
   application:
     name: catalog-bff
