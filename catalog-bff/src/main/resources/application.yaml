@@ -1,3 +1,8 @@
+server:
+  servlet:
+    context-path: /api/bff
+  port: 8081
+
 app:
   oidc:
     base-url: http://localhost:8085/realms/catalog-realm
@@ -11,8 +16,9 @@ spring:
       client:
         registration:
           keycloak:
-            client-id: orion-bff-client
-            client-secret: VIo2GVeSXDETmcWcKJWJdDNK6MqbkHRl
+            client-id: catalog-bff
+            client-secret: Wf3pvZcrNuOlGnsTbheGJdC9laww16fr
+            scope: openid
         provider:
           keycloak:
             issuer-uri: ${app.oidc.base-url}
