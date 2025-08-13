@@ -15,7 +15,7 @@ class GetUserInfoUsecaseImplTest {
 
     @Test
     fun `should return user informations`() {
-        val user: User = User("test", "test@test.com", "test1", "test2")
+        val user = User("test", "test@test.com", "test1", "test2")
 
         Mockito.`when`(userRepository.getInfo()).thenReturn(user)
 

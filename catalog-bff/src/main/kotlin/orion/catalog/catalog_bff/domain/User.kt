@@ -5,5 +5,4 @@ class User(
     private val email: String,
     private val firstName: String,
     private val lastName: String
-) {
-}
+)
