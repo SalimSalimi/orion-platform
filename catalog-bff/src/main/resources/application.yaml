@@ -11,13 +11,22 @@ spring:
   application:
     name: catalog-bff
 
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  session:
+    store-type: redis
+    timeout: 30m
+
   security:
     oauth2:
       client:
         registration:
           keycloak:
             client-id: catalog-bff
-            client-secret: Wf3pvZcrNuOlGnsTbheGJdC9laww16fr
+            client-secret: wjw8RG7Qk0onVkeYcEKivc3sjmQ1c2ky
             scope: openid
         provider:
           keycloak:
