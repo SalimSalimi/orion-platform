@@ -1,0 +1,22 @@
+app:
+  oidc:
+    base-url: http://localhost:8085/realms/catalog-realm
+
+spring:
+  application:
+    name: catalog-bff
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: orion-bff-client
+            client-secret: VIo2GVeSXDETmcWcKJWJdDNK6MqbkHRl
+        provider:
+          keycloak:
+            issuer-uri: ${app.oidc.base-url}
+
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
