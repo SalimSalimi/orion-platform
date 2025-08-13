@@ -32,9 +32,16 @@ spring:
             client-id: catalog-bff
             client-secret: wjw8RG7Qk0onVkeYcEKivc3sjmQ1c2ky
             scope: openid
+          catalog-bff-credentials:
+            client-id: catalog-bff-client-credentials
+            client-secret: eNiM9l4lxJjL3WxAiHbjr7Pi9T3amPQk
+            authorization-grant-type: client_credentials
         provider:
           keycloak:
             issuer-uri: ${app.oidc.base-url}
+          catalog-bff-credentials:
+            token-uri: ${app.oidc.base-url}/protocol/openid-connect/token
+
 
 logging:
   level:
