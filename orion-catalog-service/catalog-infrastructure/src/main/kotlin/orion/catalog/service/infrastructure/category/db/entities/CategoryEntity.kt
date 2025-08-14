@@ -17,10 +17,10 @@ class CategoryEntity(
     @Id
     val id: UUID,
 
-    @Column("name", nullable = false)
+    @Column(name = "name", nullable = false)
     val name: String,
 
-    @Column("description")
+    @Column(name = "description")
     val description: String,
 
     @Column(name = "created_at", nullable = false, updatable = false)
