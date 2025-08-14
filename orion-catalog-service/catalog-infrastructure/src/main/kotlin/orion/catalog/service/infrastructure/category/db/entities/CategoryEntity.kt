@@ -21,7 +21,7 @@ class CategoryEntity(
     val name: String,
 
     @Column(name = "description")
-    val description: String,
+    val description: String?,
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate

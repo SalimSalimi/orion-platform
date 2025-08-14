@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository
 import orion.catalog.service.application.categories.repository.CategoryRepository
 import orion.catalog.service.domain.category.Category
 import orion.catalog.service.infrastructure.category.db.dao.CategoryDAO
+import orion.catalog.service.infrastructure.category.db.entities.CategoryEntity
 import java.util.UUID
 
 @Repository
@@ -25,10 +26,29 @@ class CategoryRepositoryImpl(
                 Category(
                     id,
                     name,
-                    description,
-                    true
+                    description
                 )
             }
+        }
+    }
+
+    override fun create(category: Category): Category {
+        val categoryEntity = with(category) {
+            CategoryEntity(
+                id,
+                name,
+                description
+            )
+        }
+
+        val createdEntity: CategoryEntity = categoryDAO.save(categoryEntity)
+
+        return with(createdEntity) {
+            Category(
+                id,
+                name,
+                description
+            )
         }
     }
 }

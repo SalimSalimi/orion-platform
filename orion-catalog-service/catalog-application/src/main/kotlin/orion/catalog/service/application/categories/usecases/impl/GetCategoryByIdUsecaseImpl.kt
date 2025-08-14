@@ -1,6 +1,6 @@
-package orion.catalog.service.application.categories.impl
+package orion.catalog.service.application.categories.usecases.impl
 
-import orion.catalog.service.application.categories.GetCategoryByIdUsecase
+import orion.catalog.service.application.categories.usecases.GetCategoryByIdUsecase
 import orion.catalog.service.application.categories.repository.CategoryRepository
 import orion.catalog.service.application.utils.Usecase
 import orion.catalog.service.domain.category.Category

@@ -8,4 +8,6 @@ interface CategoryRepository {
     fun existsById(id: UUID): Boolean
 
     fun getById(id: UUID): Category?
+
+    fun create(category: Category): Category
 }
