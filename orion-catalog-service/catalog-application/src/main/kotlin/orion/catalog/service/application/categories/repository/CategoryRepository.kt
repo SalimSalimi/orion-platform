@@ -1,4 +1,4 @@
-package orion.catalog.service.application.categories
+package orion.catalog.service.application.categories.repository
 
 import orion.catalog.service.domain.category.Category
 import java.util.UUID

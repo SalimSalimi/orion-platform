@@ -2,7 +2,7 @@ package orion.catalog.service.infrastructure.category.db
 
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
-import orion.catalog.service.application.categories.CategoryRepository
+import orion.catalog.service.application.categories.repository.CategoryRepository
 import orion.catalog.service.domain.category.Category
 import orion.catalog.service.infrastructure.category.db.dao.CategoryDAO
 import java.util.UUID

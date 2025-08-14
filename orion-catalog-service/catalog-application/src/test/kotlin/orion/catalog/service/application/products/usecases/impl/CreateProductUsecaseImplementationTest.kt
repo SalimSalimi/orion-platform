@@ -6,7 +6,7 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
-import orion.catalog.service.application.categories.CategoryRepository
+import orion.catalog.service.application.categories.repository.CategoryRepository
 import orion.catalog.service.application.products.dto.CreateProductDto
 import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.domain.product.Product

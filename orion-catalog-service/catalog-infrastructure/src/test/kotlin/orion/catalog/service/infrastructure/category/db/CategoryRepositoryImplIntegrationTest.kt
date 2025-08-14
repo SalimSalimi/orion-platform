@@ -8,7 +8,7 @@ import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import orion.catalog.service.application.categories.CategoryRepository
+import orion.catalog.service.application.categories.repository.CategoryRepository
 import orion.catalog.service.infrastructure.category.db.dao.CategoryDAO
 import orion.catalog.service.infrastructure.category.db.entities.CategoryEntity
 import java.time.Instant
