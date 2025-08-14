@@ -11,17 +11,21 @@ import java.util.UUID
 @Component
 class CorrelationIdFilter: OncePerRequestFilter() {
 
+    companion object {
+        const val CORRELATION_ID_HEADER = "X-Correlation-Id"
+    }
+
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        val correlationId = request.getHeader("X-Correlation-Id")
+        val correlationId = request.getHeader(CORRELATION_ID_HEADER)
 
         if (correlationId != null && correlationId.isNotEmpty()) {
-            MDC.put("X-Correlation-Id", correlationId)
+            MDC.put(CORRELATION_ID_HEADER, correlationId)
         } else {
-            MDC.put("X-Correlation-Id", UUID.randomUUID().toString())
+            MDC.put(CORRELATION_ID_HEADER, UUID.randomUUID().toString())
         }
 
         filterChain.doFilter(request, response)

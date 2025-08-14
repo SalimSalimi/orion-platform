@@ -27,7 +27,6 @@ class HttpRequestsLogFilter: OncePerRequestFilter() {
         val duration = measureTimeMillis {
             filterChain.doFilter(request, response)
         }
-        filterChain.doFilter(request, response)
 
         HttpRequestsLogFilter.logger.info(
             "Handled request method={} path={} status={} user={} correlationId={} duration={}ms",
@@ -35,7 +34,7 @@ class HttpRequestsLogFilter: OncePerRequestFilter() {
             path,
             response.status,
             user,
-            MDC.get("correlationId"),
+            MDC.get(CorrelationIdFilter.CORRELATION_ID_HEADER),
             duration
         )
     }
