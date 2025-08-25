@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import orion.catalog.service.application.categories.dto.CreateCategoryDto
@@ -30,7 +31,7 @@ class CategoryController(
     }
 
     @PostMapping
-    fun createProduct(dto: CreateCategoryDto): ResponseEntity<CreatedProductDto> {
+    fun createProduct(@RequestBody dto: CreateCategoryDto): ResponseEntity<CreatedProductDto> {
         val categoryId = createCategoryUsecase.execute(dto)
 
         return ResponseEntity.ok(CreatedProductDto(categoryId.toString()))
