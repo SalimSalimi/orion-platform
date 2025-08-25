@@ -10,7 +10,6 @@ class GetAllProductsUsecaseImpl(
     private val productRepository: ProductRepository
 ): GetAllProductsUsecase {
 
-
     override fun execute(input: Unit): List<Product> {
         return this.productRepository.getAll()
     }
