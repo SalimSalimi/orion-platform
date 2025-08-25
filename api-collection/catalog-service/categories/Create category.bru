@@ -1,11 +1,11 @@
 meta {
-  name: Create product
+  name: Create category
   type: http
-  seq: 2
+  seq: 4
 }
 
 post {
-  url: http://localhost:8080/api/catalog/products
+  url: http://localhost:8080/api/catalog/categories
   body: json
   auth: oauth2
 }
@@ -15,7 +15,7 @@ auth:oauth2 {
   access_token_url: http://localhost:8085/realms/catalog-realm/protocol/openid-connect/token
   refresh_token_url: 
   client_id: catalog-bff-client-credentials
-  client_secret: w39LZBvEkIfkQB5jyHw9cSSCcOrT5Zyw
+  client_secret: eNiM9l4lxJjL3WxAiHbjr7Pi9T3amPQk
   scope: 
   credentials_placement: basic_auth_header
   credentials_id: credentials
@@ -27,11 +27,8 @@ auth:oauth2 {
 
 body:json {
   {
-    "name": "First product",
-    "description": "this is my first product created through Bruno with OAuth2",
-    "price": 150.00,
-    "stock": 5,
-    "categoryIds": []
+    "name": "Category 1",
+    "description": "First category"
   }
 }
 
