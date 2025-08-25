@@ -14,7 +14,8 @@ class ProductMapper {
                 name,
                 description,
                 price,
-                availableStock
+                availableStock,
+                categoryId
             )
         }
     }

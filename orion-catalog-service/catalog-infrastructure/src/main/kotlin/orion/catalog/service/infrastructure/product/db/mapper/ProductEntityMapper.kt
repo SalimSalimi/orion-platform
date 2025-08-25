@@ -15,7 +15,7 @@ class ProductEntityMapper {
                 description,
                 price,
                 availableStock = stock,
-                categoryId = emptySet()
+                categoryId = productEntity.categories?.map { it.id }?.toSet()
             )
         }
     }
