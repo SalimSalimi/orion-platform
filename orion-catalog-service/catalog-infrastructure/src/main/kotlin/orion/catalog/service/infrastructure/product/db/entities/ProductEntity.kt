@@ -3,10 +3,13 @@ package orion.catalog.service.infrastructure.product.db.entities
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
+import orion.catalog.service.infrastructure.category.db.entities.CategoryEntity
 import java.time.Instant
 import java.util.UUID
 
@@ -35,4 +38,8 @@ class ProductEntity(
     @Column(name = "updated_at", nullable = false)
     @LastModifiedDate
     var updatedAt: Instant = Instant.now(),
+
+    @OneToMany
+    @JoinColumn(name = "category_id")
+    var categories: MutableSet<CategoryEntity>? = HashSet()
 )

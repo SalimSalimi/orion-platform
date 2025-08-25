@@ -1,5 +1,6 @@
 package orion.catalog.service.application.products.usecases.impl
 
+import orion.catalog.service.application.categories.repository.CategoryRepository
 import orion.catalog.service.application.products.dto.CreateProductDto
 import orion.catalog.service.application.products.repository.ProductRepository
 import orion.catalog.service.application.products.usecases.CreateProductUsecase
@@ -10,6 +11,7 @@ import java.util.UUID
 @Usecase
 class CreateProductUsecaseImplementation(
     private val productRepository: ProductRepository,
+    private val categoryRepository: CategoryRepository
 ) : CreateProductUsecase {
 
     override fun execute(input: CreateProductDto): UUID {
@@ -21,6 +23,15 @@ class CreateProductUsecaseImplementation(
             availableStock = input.stock,
             categoryId = input.categoryIds.toMutableSet(),
         )
+
+        if (product.categoryId?.isNotEmpty() == true) {
+            product.categoryId!!.forEach {
+                val categoryFound = categoryRepository.existsById(it)
+                if (!categoryFound) {
+                    throw RuntimeException("Category with $it not found")
+                }
+            }
+        }
         // Save product
         return productRepository.create(product)
     }
