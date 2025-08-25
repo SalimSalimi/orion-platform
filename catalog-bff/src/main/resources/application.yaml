@@ -30,11 +30,11 @@ spring:
         registration:
           keycloak:
             client-id: catalog-bff
-            client-secret: wjw8RG7Qk0onVkeYcEKivc3sjmQ1c2ky
+            client-secret: BUlcoZxZAlncpzh1dclNWrsD1NKaEImo
             scope: openid
           catalog-bff-credentials:
             client-id: catalog-bff-client-credentials
-            client-secret: eNiM9l4lxJjL3WxAiHbjr7Pi9T3amPQk
+            client-secret: 9FHpvaxuk3REQzyUCiJlrNT0YYlZUTj3
             authorization-grant-type: client_credentials
         provider:
           keycloak:
@@ -42,7 +42,9 @@ spring:
           catalog-bff-credentials:
             token-uri: ${app.oidc.base-url}/protocol/openid-connect/token
 
-
 logging:
   level:
     org.springframework.web.client.RestTemplate: DEBUG
+  structured:
+    format:
+      console: ecs
