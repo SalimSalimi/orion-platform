@@ -20,11 +20,15 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: devuser
+      KC_DB_PASSWORD: devpass
     command: start-dev
     ports:
       - "8085:8080"
-    volumes:
-      - keycloak_data:/opt/keycloak/data
+    depends_on:
+      - postgres
 
   redis:
     image: redis:8.2.0
@@ -44,4 +48,3 @@ services:
 
 volumes:
   postgres_data:
-  keycloak_data:
