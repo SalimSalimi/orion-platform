@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS category CASCADE;
 
 CREATE TABLE category (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE,
     description TEXT,
     created_at TIMESTAMPTZ NOT NULL,
@@ -10,4 +10,4 @@ CREATE TABLE category (
 
 
 ALTER TABLE product
-ADD COLUMN id_category INT references category(id) ON DELETE CASE;
+ADD COLUMN id_category UUID references category(id) ON DELETE CASCADE;

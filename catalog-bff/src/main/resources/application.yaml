@@ -30,11 +30,11 @@ spring:
         registration:
           keycloak:
             client-id: catalog-bff
-            client-secret: fa9iSyf7YM6cpRiQkfVgrKA0s1JXXq7p
+            client-secret: VMHLyOV2DZkPqrtIxDvYOfWDvSfbkJKP
             scope: openid
           catalog-bff-credentials:
             client-id: catalog-bff-client-credentials
-            client-secret: w39LZBvEkIfkQB5jyHw9cSSCcOrT5Zyw
+            client-secret: 8BcQzD7RVR0QjbJjya5LINODaxiHDkHA
             authorization-grant-type: client_credentials
         provider:
           keycloak:

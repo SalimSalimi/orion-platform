@@ -36,6 +36,6 @@ spring:
 logging:
   level:
     org.springframework.web.client.RestTemplate: DEBUG
-  structured:
-    format:
-      console: ecs
+#  structured:
+#    format:
+#      console: ecs
