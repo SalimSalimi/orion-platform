@@ -23,12 +23,8 @@ class GetAllProductsWithCategoriesUsecaseImpl(
         if (products.isNotEmpty()) {
             products.forEach { product ->
                 run {
-                    if (product.categoriesId.isNotEmpty()) {
-                        val categories = getCategories(product.categoriesId)
-                        if (categories.isNotEmpty()) {
-                            result.add(mapProductWithCategories(product, categories))
-                        }
-                    }
+                    val categories = getCategories(product.categoriesId)
+                    result.add(mapProductWithCategories(product, categories))
                 }
             }
         }

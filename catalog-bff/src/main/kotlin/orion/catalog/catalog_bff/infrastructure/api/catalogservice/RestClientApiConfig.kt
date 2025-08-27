@@ -11,7 +11,7 @@ import org.springframework.web.client.RestClient
 
 @Configuration
 class RestClientApiConfig(
-    private val authorizedClientManager: OAuth2AuthorizedClientManager
+    @field:Qualifier("clientCredentialsOAuth2") private val authorizedClientManager: OAuth2AuthorizedClientManager
 ) {
 
     @Bean
@@ -20,7 +20,7 @@ class RestClientApiConfig(
         val requestInterceptor =
             OAuth2ClientHttpRequestInterceptor(authorizedClientManager)
 
-        requestInterceptor.setClientRegistrationIdResolver { request -> "catalog-bff-credentials" }
+        requestInterceptor.setClientRegistrationIdResolver { _ -> "catalog-bff-credentials" }
 
         return builder
             .baseUrl(baseUrl)
