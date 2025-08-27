@@ -15,7 +15,7 @@ auth:oauth2 {
   access_token_url: http://localhost:8085/realms/catalog-realm/protocol/openid-connect/token
   refresh_token_url: 
   client_id: catalog-bff-client-credentials
-  client_secret: w39LZBvEkIfkQB5jyHw9cSSCcOrT5Zyw
+  client_secret: 8BcQzD7RVR0QjbJjya5LINODaxiHDkHA
   scope: 
   credentials_placement: basic_auth_header
   credentials_id: credentials
@@ -27,11 +27,11 @@ auth:oauth2 {
 
 body:json {
   {
-    "name": "Product with category",
-    "description": "this is my first product created through Bruno with OAuth2",
+    "name": "USB-C Cable",
+    "description": "Cable compatible with USB-C interface",
     "price": 10.00,
     "stock": 15,
-    "categoryIds": ["980caaca-b8fc-4484-b085-318b21a1518f"]
+    "categoryIds": ["3efd4109-f02d-4546-9e30-b33119091335", "f6c34e78-c4eb-4e5f-8233-7b19c73805d9"]
   }
 }
 
