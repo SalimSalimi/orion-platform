@@ -21,7 +21,8 @@ class ProductRepositoryImpl(
                 Product(
                     it.name,
                     it.price,
-                    it.availableInStock
+                    it.availableInStock,
+                    it.categories
                 )
             }
         }

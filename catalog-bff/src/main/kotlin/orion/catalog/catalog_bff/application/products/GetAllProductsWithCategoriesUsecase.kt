@@ -1,0 +1,6 @@
+package orion.catalog.catalog_bff.application.products
+
+import orion.catalog.catalog_bff.application.products.dto.ProductWithCategoryDto
+import orion.catalog.catalog_bff.application.shared.BaseUsecaseWithoutParameterInterface
+
+interface GetAllProductsWithCategoriesUsecase: BaseUsecaseWithoutParameterInterface<List<ProductWithCategoryDto>>

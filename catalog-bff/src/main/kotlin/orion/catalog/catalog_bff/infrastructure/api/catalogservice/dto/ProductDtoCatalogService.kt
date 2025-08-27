@@ -6,4 +6,5 @@ data class ProductDtoCatalogService(
     val description: String?,
     val price: Double,
     val availableInStock: Int,
+    val categories: Set<String>
 )
