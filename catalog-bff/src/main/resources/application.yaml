@@ -24,6 +24,10 @@ spring:
     store-type: redis
     timeout: 30m
 
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+
   security:
     oauth2:
       client:
@@ -45,6 +49,3 @@ spring:
 logging:
   level:
     org.springframework.web.client.RestTemplate: DEBUG
-  structured:
-    format:
-      console: ecs
