@@ -11,16 +11,14 @@ import orion.catalog.catalog_bff.application.shared.ParallelUsecaseExecutor
 import orion.catalog.catalog_bff.application.shared.annotation.Usecase
 import orion.catalog.catalog_bff.domain.category.Category
 import orion.catalog.catalog_bff.domain.product.Product
-import orion.catalog.catalog_bff.infrastructure.executors.CacheUsecaseResultExecutorImpl
 import orion.catalog.catalog_bff.infrastructure.executors.MultiThreadUsecaseExecutorImpl
 import kotlin.system.measureTimeMillis
 
-@Usecase
+@Usecase(cache = false)
 class GetAllProductsWithCategoriesUsecaseImpl(
     private val productRepository: ProductRepository,
     private val getCategoryByIdUsecase: GetCategoryByIdUsecase,
-    private val parallelUsecaseExecutor: ParallelUsecaseExecutor,
-    private val cacheManager: CacheManager
+    private val parallelUsecaseExecutor: ParallelUsecaseExecutor
 ): GetAllProductsWithCategoriesUsecase {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -33,7 +31,7 @@ class GetAllProductsWithCategoriesUsecaseImpl(
                 run {
                     var categories: Set<Category> = HashSet()
                     val duration = measureTimeMillis {
-                        categories = getCategories(product.categoriesId)
+                        categories = getCategoriesInParallel(product.categoriesId)
                     }
                     logger.info("Execution time of usecase: $duration ms")
                     result.add(mapProductWithCategories(product, categories))
@@ -71,10 +69,9 @@ class GetAllProductsWithCategoriesUsecaseImpl(
         return result
     }
 
-    private fun getCategoriesInParallelWithCache(categoriesId: Set<String>): Set<Category> {
-        val pairCategories: List<Pair<CacheUsecaseResultExecutorImpl<String, Category?>, String>> = categoriesId.map { categoryId ->
-            val cachedUsecase = CacheUsecaseResultExecutorImpl(cacheManager, getCategoryByIdUsecase)
-            Pair(cachedUsecase, categoryId)
+    private fun getCategoriesInParallel(categoriesId: Set<String>): Set<Category> {
+        val pairCategories: List<Pair<GetCategoryByIdUsecase, String>> = categoriesId.map { categoryId ->
+            Pair(getCategoryByIdUsecase, categoryId)
         }
         @Suppress("UNCHECKED_CAST")
         return parallelUsecaseExecutor.executeAll(pairCategories).toSet() as Set<Category>

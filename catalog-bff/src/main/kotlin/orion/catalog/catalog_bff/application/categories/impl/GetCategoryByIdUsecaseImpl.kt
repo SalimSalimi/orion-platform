@@ -5,7 +5,7 @@ import orion.catalog.catalog_bff.application.categories.repository.CategoryRepos
 import orion.catalog.catalog_bff.application.shared.annotation.Usecase
 import orion.catalog.catalog_bff.domain.category.Category
 
-@Usecase
+@Usecase(cache = true)
 class GetCategoryByIdUsecaseImpl(
     private val categoryRepository: CategoryRepository
 ): GetCategoryByIdUsecase {

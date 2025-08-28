@@ -5,7 +5,7 @@ import orion.catalog.catalog_bff.application.products.repository.ProductReposito
 import orion.catalog.catalog_bff.application.shared.annotation.Usecase
 import orion.catalog.catalog_bff.domain.product.Product
 
-@Usecase
+@Usecase(cache = true)
 class GetAllProductsUsecaseImpl(
     private val productRepository: ProductRepository
 ): GetAllProductsUsecase {

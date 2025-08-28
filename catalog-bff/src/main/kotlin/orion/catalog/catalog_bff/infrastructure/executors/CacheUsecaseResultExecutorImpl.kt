@@ -12,8 +12,8 @@ class CacheUsecaseResultExecutorImpl<I, R>(
 
     override fun execute(input: I): R {
         val cacheUsecase = cacheManager.getCache("usecaseCache")
-        @Suppress("UNCHECKED_CAST")
 
+        @Suppress("UNCHECKED_CAST")
         val cachedValue: R? = cacheUsecase?.get(input as Any, Any::class.java) as R?
         if (cachedValue != null) {
             logger.info("Get value from cache with parameter $input")
