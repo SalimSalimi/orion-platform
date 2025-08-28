@@ -1,7 +1,6 @@
 package orion.catalog.catalog_bff.infrastructure.helpers
 
 import org.slf4j.LoggerFactory
-import org.springframework.scheduling.annotation.Async
 import orion.catalog.catalog_bff.application.shared.BaseUsecaseInterface
 import orion.catalog.catalog_bff.application.shared.UsecaseExecutorDecorator
 import java.util.concurrent.ExecutorService
@@ -12,9 +11,9 @@ class MultiThreadUsecaseExecutorImpl<I, R>
     (usecase: BaseUsecaseInterface<I, R>) : UsecaseExecutorDecorator<I, R>(usecase) {
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    @Async
+    private val virtualExecutor: ExecutorService = Executors.newVirtualThreadPerTaskExecutor()
+
     override fun execute(input: I): R {
-        val virtualExecutor: ExecutorService = Executors.newVirtualThreadPerTaskExecutor()
         val result: Future<*> = virtualExecutor.submit<R> {
             logger.info("Executing in a virtual thread")
             super.execute(input)
