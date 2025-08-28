@@ -1,4 +1,4 @@
-package orion.catalog.catalog_bff.infrastructure.helpers
+package orion.catalog.catalog_bff.infrastructure.executors
 
 import org.slf4j.LoggerFactory
 import orion.catalog.catalog_bff.application.shared.BaseUsecaseInterface
